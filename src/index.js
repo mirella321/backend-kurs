@@ -14,7 +14,7 @@ app.get("/api/movies", ()  => {
     {
         title: "Avatar",
         director : "james cameron"
-    }
+    },
      {
         title: "Interstellar",
         director : "XYZ"
