@@ -1,31 +1,13 @@
 import { Router } from "express";
+import { createMovie, getMovies, getMovieById, incrementLikes, decrementLikes, } from "../controllers/movies.controllers.js";
 
 const movieRoute = Router();
 
-movieRoute.get("/api/movies", (req, res) => {
-  const movies = [
-    {
-      title: "Avatar",
-      director: "james cameron",
-    },
-    {
-      title: "Interstellar",
-      director: "XYZ",
-    },
-  ];
-  res.json(movies);
-});
-
-movieRoute.post("/api/movies" , (req, res, next) => 
-{
-  const movie = req.body;
-
-  if( !movie.title) {
-    return next (new Error("provide title"));
-  }
-
-  res.status(201).json(movie)
-}
-)
+movieRoute.get("/", getMovies );
+movieRoute.post("/", createMovie);
+movieRoute.get("/:id", getMovieById);
+movieRoute.patch("/:id/like", incrementLikes);
+movieRoute.patch("/:id/dislike", decrementLikes);
 
 export default movieRoute;
+
